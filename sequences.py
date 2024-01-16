@@ -111,7 +111,7 @@ def get_sequences(n):
     return(sequences)
 
 
-def get_filtered_dict(sequences):
+def get_filtered_dict(sequences,strict=False):
     
     #create a dictionary of enumerated base sequences
     sequence_dictA=dict(enumerate(sequences))
@@ -123,7 +123,10 @@ def get_filtered_dict(sequences):
 
     #remove any sequences that are not unique at 2 or more positions
     sequence_dictB=sequence_dictA
-    max_matches=len(sequences[0])-2
+    if strict:
+        max_matches=len(sequences[0])-3
+    else:
+        max_matches=len(sequences[0])-2
     for k,v in sequence_dictA.items():
         if '*' in v :
             continue
